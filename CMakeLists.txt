@@ -20,11 +20,21 @@ function(create_directory_groups)
     endforeach()
 endfunction()
 
+include_directories(src)
+
 # Source files
 set(SRCS
         src/main.cpp
+        src/Solver.cpp
     )
 
-create_directory_groups(${SRCS})
+# Header files
+set(HEADERS
+        src/Solver.hpp
+    )
+
+create_directory_groups(${SRCS} ${HEADERS})
 
 add_executable(ThreeDigitsSolver ${SRCS})
+set_property(TARGET ThreeDigitsSolver PROPERTY CXX_STANDARD 11)
+set_property(TARGET ThreeDigitsSolver PROPERTY CXX_STANDARD_REQUIRED ON)
