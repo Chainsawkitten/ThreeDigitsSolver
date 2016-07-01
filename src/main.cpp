@@ -42,22 +42,28 @@ int main() {
     
     // Instruct user to switch to Three Digits, then wait for them to do so.
     std::cout << "You have 10 seconds to switch to Three Digits and open the level you're currently on." << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    std::this_thread::sleep_for(std::chrono::seconds(10));
     
-    // Get numbers.
-    for (int i=0; i<14; ++i) {
-        numbers[i] = GetNumber(positions[i]);
-        std::cout << positions[i].first << ":" << positions[i].second << " - " << numbers[i] << std::endl;
-    }
-    
-    // Solve.
-    solver.SetNumbers(numbers);
-    solver.Solve();
-    
-    const unsigned char* solution = solver.GetSolution();
-    
-    for (int i=0; i<14; ++i) {
-        for (unsigned char times = 0; times < solution[i]; ++times)
-            SimulatedMouse::Click(positions[i].first, positions[i].second);
+    while (true) {
+        // Get numbers.
+        std::cout << "Get numbers" << std::endl;
+        for (int i=0; i<14; ++i) {
+            numbers[i] = GetNumber(positions[i]);
+            std::cout << positions[i].first << ":" << positions[i].second << " - " << numbers[i] << std::endl;
+        }
+        
+        // Solve.
+        solver.SetNumbers(numbers);
+        solver.Solve();
+        
+        const unsigned char* solution = solver.GetSolution();
+        
+        for (int i=0; i<14; ++i) {
+            for (unsigned char times = 0; times < solution[i]; ++times)
+                SimulatedMouse::Click(positions[i].first, positions[i].second);
+        }
+        
+        // Wait until next level has finished loading.
+        std::this_thread::sleep_for(std::chrono::seconds(5));
     }
 }
