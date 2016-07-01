@@ -1,6 +1,7 @@
 #include "Solver.hpp"
 #include "ScreenCapture.hpp"
 #include "Execute.hpp"
+#include "SimulatedMouse.hpp"
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -41,7 +42,7 @@ int main() {
     
     // Instruct user to switch to Three Digits, then wait for them to do so.
     std::cout << "You have 10 seconds to switch to Three Digits and open the level you're currently on." << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(10));
+    std::this_thread::sleep_for(std::chrono::seconds(5));
     
     // Get numbers.
     for (int i=0; i<14; ++i) {
@@ -53,4 +54,7 @@ int main() {
     solver.SetNumbers(numbers);
     solver.Solve();
     solver.Print();
+    
+    // Test simulated mouse.
+    SimulatedMouse::Click(positions[0].first, positions[0].second);
 }

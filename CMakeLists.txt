@@ -28,6 +28,7 @@ set(SRCS
         src/Solver.cpp
         src/ScreenCapture.cpp
         src/Execute.cpp
+        src/SimulatedMouse.cpp
     )
 
 # Header files
@@ -35,6 +36,7 @@ set(HEADERS
         src/Solver.hpp
         src/ScreenCapture.hpp
         src/Execute.hpp
+        src/SimulatedMouse.hpp
     )
 
 create_directory_groups(${SRCS} ${HEADERS})
