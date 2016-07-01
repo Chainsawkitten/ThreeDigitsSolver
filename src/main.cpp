@@ -53,8 +53,11 @@ int main() {
     // Solve.
     solver.SetNumbers(numbers);
     solver.Solve();
-    solver.Print();
     
-    // Test simulated mouse.
-    SimulatedMouse::Click(positions[0].first, positions[0].second);
+    const unsigned char* solution = solver.GetSolution();
+    
+    for (int i=0; i<14; ++i) {
+        for (unsigned char times = 0; times < solution[i]; ++times)
+            SimulatedMouse::Click(positions[i].first, positions[i].second);
+    }
 }
