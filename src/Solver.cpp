@@ -39,6 +39,10 @@ void Solver::Print() {
     std::cout << std::endl;
 }
 
+const unsigned char* Solver::GetSolution() const {
+    return status;
+}
+
 bool Solver::Test() {
     int sum1 = 0;
     int sum2 = 0;

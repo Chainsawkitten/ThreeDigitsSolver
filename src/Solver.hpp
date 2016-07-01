@@ -15,6 +15,12 @@ class Solver {
         /// Print the solution.
         void Print();
         
+        /// Get the solution.
+        /**
+         * @return How many times each number should be clicked.
+         */
+        const unsigned char* GetSolution() const;
+        
     private:
         bool Test();
         bool Probe(int current);
