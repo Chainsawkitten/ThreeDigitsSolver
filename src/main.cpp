@@ -59,10 +59,6 @@ int main() {
         
         // Don't allow the same solution if it didn't work before.
         if (same) {
-            // Click reset button.
-            SimulatedMouse::Click(956, 1004);
-            std::this_thread::sleep_for(std::chrono::seconds(3));
-            
             ++allowedSolution;
             
             std::cout << "Same level" << std::endl;
@@ -73,7 +69,7 @@ int main() {
         
         // Solve.
         solver.SetNumbers(numbers);
-        solver.Solve();
+        solver.Solve(allowedSolution);
         
         const unsigned char* solution = solver.GetSolution();
         
@@ -83,6 +79,8 @@ int main() {
         }
         
         // Wait until next level has finished loading.
-        std::this_thread::sleep_for(std::chrono::seconds(5));
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        SimulatedMouse::Click(956, 1004);
+        std::this_thread::sleep_for(std::chrono::seconds(3));
     }
 }

@@ -10,7 +10,10 @@ void Solver::SetNumbers(unsigned int* numbers) {
     }
 }
 
-void Solver::Solve() {
+void Solver::Solve(unsigned int allowedSolution) {
+    this->allowedSolution = allowedSolution;
+    solution = 0;
+    
     Probe(0);
 }
 
@@ -54,7 +57,11 @@ bool Solver::Test() {
             sum2 += numbers[i];
     }
     
-    return sum1 > 0 && sum1 == sum2;
+    if (sum1 > 0 && sum1 == sum2) {
+        if (++solution > allowedSolution)
+            return true;
+    }
+    return false;
 }
 
 bool Solver::Probe(int current) {

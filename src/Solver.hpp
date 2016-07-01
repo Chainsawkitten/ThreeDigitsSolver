@@ -10,7 +10,10 @@ class Solver {
         void SetNumbers(unsigned int* numbers);
         
         /// Solve the problem and output the results.
-        void Solve();
+        /**
+         * @param allowedSolution First allowed solution (zero indexed).
+         */
+        void Solve(unsigned int allowedSolution);
         
         /// Print the solution.
         void Print();
@@ -27,4 +30,7 @@ class Solver {
         
         unsigned int numbers[14];
         unsigned char status[14];
+        
+        unsigned int solution;
+        unsigned int allowedSolution;
 };
