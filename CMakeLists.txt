@@ -26,11 +26,13 @@ include_directories(src)
 set(SRCS
         src/main.cpp
         src/Solver.cpp
+        src/ScreenCapture.cpp
     )
 
 # Header files
 set(HEADERS
         src/Solver.hpp
+        src/ScreenCapture.hpp
     )
 
 create_directory_groups(${SRCS} ${HEADERS})
