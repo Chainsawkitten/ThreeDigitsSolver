@@ -39,6 +39,7 @@ int main() {
     
     Solver solver;
     unsigned int numbers[14];
+    unsigned int allowedSolution = 0;
     
     // Instruct user to switch to Three Digits, then wait for them to do so.
     std::cout << "You have 10 seconds to switch to Three Digits and open the level you're currently on." << std::endl;
@@ -47,10 +48,28 @@ int main() {
     while (true) {
         // Get numbers.
         std::cout << "Get numbers" << std::endl;
+        bool same = true;
         for (int i=0; i<14; ++i) {
-            numbers[i] = GetNumber(positions[i]);
-            std::cout << positions[i].first << ":" << positions[i].second << " - " << numbers[i] << std::endl;
+            unsigned int number = GetNumber(positions[i]);
+            std::cout << positions[i].first << ":" << positions[i].second << " - " << number << std::endl;
+            if (number != numbers[i])
+                same = false;
+            numbers[i] = number;
         }
+        
+        // Don't allow the same solution if it didn't work before.
+        if (same) {
+            // Click reset button.
+            SimulatedMouse::Click(956, 1004);
+            std::this_thread::sleep_for(std::chrono::seconds(3));
+            
+            ++allowedSolution;
+            
+            std::cout << "Same level" << std::endl;
+        } else {
+            allowedSolution = 0;
+        }
+            
         
         // Solve.
         solver.SetNumbers(numbers);
