@@ -1,5 +1,5 @@
 # ThreeDigitsSolver
-Automatic solver of the game Three Digits.
+Automatic solver of the game Three Digits. For Windows only.
 
 ## Usage
 1. Clone the GitHub repository
